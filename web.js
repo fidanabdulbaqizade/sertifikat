@@ -64,7 +64,6 @@ const books = [
     description: "A timeless story of love, loss, and imagination from another planet."
   }
 ];
-
 // Kitabların ekrana verilməsi
 function renderBooks(bookList) {
   const container = document.getElementById("book-list");
