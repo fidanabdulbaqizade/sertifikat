@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BookSite</title>
+  <link rel="stylesheet" href="web site.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-2xl font-bold">📚 BookSite</div>
+      <ul class="flex gap-6 text-gray-700 text-lg items-center">
+        <li><a href="Home site.html" class="hover:text-blue-600">Əsas səhifə</a></li>
+        <li><a href="books.html" class="hover:text-blue-600">Kitablar</a></li>
+        <li>
+          <button onclick="document.getElementById('basket-panel').classList.toggle('hidden')" class="relative">
+            🛒 <span id="cart-count"
+              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">0</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="toggleModal()" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Giriş</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container mx-auto px-4 pb-4">
+      <div class="flex justify-center">
+        <input type="text" placeholder="Kitab adı..."
+          class="w-full max-w-md px-4 py-2 border rounded-l focus:outline-none focus:ring" />
+        <button class="bg-blue-600 text-white px-4 py-2 rounded-r hover:bg-blue-700">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Səbət Paneli -->
+  <div id="basket-panel" class="hidden fixed top-24 right-6 w-80 bg-white border rounded-xl shadow-lg p-4 z-50">
+    <h3 class="text-lg font-bold mb-2">Səbət</h3>
+    <div id="basket-items" class="space-y-2 text-sm"></div>
+    <div class="mt-4 flex justify-between items-center font-semibold">
+      <span>Toplam:</span>
+      <span id="total-price">0 ₼</span>
+    </div>
+    <button onclick="checkout()" class="mt-4 w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Sifariş et</button>
+  </div>
+
+  <!-- Kateqoriya düymələri -->
+  <div class="container mx-auto px-4 mt-6 flex gap-4">
+    <button onclick="renderBooks(books)" class="category-btn bg-gray-200 px-4 py-2 rounded">Hamısı</button>
+    <button onclick="filterBooks('azerbaycan', this)" class="category-btn bg-gray-200 px-4 py-2 rounded">Azərbaycan</button>
+    <button onclick="filterBooks('turk', this)" class="category-btn bg-gray-200 px-4 py-2 rounded">Türk</button>
+    <button onclick="filterBooks('xarici', this)" class="category-btn bg-gray-200 px-4 py-2 rounded">Xarici</button>
+  </div>
+
+  <!-- Kitablar -->
+  <div id="book-list"
+    class="container mx-auto px-4 mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+
+  <!-- Giriş Modal -->
+  <div id="signin-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+    <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm relative">
+      <button onclick="toggleModal()" class="absolute top-2 right-2 text-gray-500 hover:text-red-500">✖</button>
+      <h2 class="text-xl font-bold mb-4 text-center">Giriş</h2>
+      <form class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium">Email</label>
+          <input type="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Parol</label>
+          <input type="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700">Daxil ol</button>
+          <button type="button" class="mt-4 bg-red-500 text-white w-full py-2 rounded hover:bg-red-600">Google ilə qoşul</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Kitab Modal -->
+  <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden z-50 flex justify-center items-center p-6">
+    <div class="bg-white rounded-xl p-6 max-w-2xl w-full flex flex-col md:flex-row items-start gap-6 relative">
+      <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-xl font-bold">✖</button>
+      <img id="modal-img" class="w-48 h-auto rounded shadow" />
+      <div class="flex flex-col justify-start text-left">
+        <h2 id="modal-title" class="text-xl font-bold mb-2 text-gray-800"></h2>
+        <p id="modal-desc" class="text-gray-700 text-sm"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-8 mt-12">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-lg font-semibold mb-2">📖 BookSite</p>
+      <p class="mb-2">Sizi kitabla daha yaxın edən onlayn mağaza</p>
+      <p>Email: <a href="mailto:info@booksite.az" class="underline">info@booksite.az</a></p>
+      <p class="text-sm mt-4">© 2025 Bütün hüquqlar qorunur</p>
+    </div>
+  </footer>
+
+  <script src="web.js"></script>
+</body>
+
+</html>
