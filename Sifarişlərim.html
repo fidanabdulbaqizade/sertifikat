@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookSite</title>
+  <link rel="stylesheet" href="web site.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-800 font-sans">
+<!-- Navbar -->
+<nav class="bg-white shadow-md">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold">📚 BookSite</div>
+    <ul class="flex gap-6 text-gray-700 text-lg items-center space-x-4 sm:space-x-8">
+      <li><a href="Home site.html" class="hover:text-blue-600">Əsas səhifə</a></li>
+      <li><a href="books.html" class="hover:text-blue-600">Kitablar</a></li>
+      <li><a href="Sifarişlərim.html" class="hover:text-blue-600">Sifarişlərim</a></li>
+      <li><a href="Əlaqə.html" class="hover:text-blue-600">Əlaqə</a></li>
+      <li>
+        <button onclick="document.getElementById('basket-panel').classList.toggle('hidden')" class="relative">
+          🛒 <span id="cart-count"
+            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">0</span>
+        </button>
+      </li>
+      <li>
+        <button onclick="toggleModal()" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Giriş</button>
+      </li>
+    </ul>
+  </div>
+
+    <div class="container mx-auto px-4 pb-4">
+      <div class="flex justify-center">
+        <input type="text" id="searchInput" placeholder="Kitab adı..."
+    class="w-full max-w-md px-4 py-2 border rounded-l focus:outline-none focus:ring" />
+        <button class="bg-blue-600 text-white px-4 py-2 rounded-r hover:bg-blue-700">
+          <a href=""><i class="fa-solid fa-magnifying-glass"></i></a></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Səbət Paneli -->
+  <div id="basket-panel" class="hidden fixed top-24 right-6 w-80 bg-white border rounded-xl shadow-lg p-4 z-50">
+    <h3 class="text-lg font-bold mb-2">Səbət</h3>
+    <div id="basket-items" class="space-y-2 text-sm"></div>
+    <div class="mt-4 flex justify-between items-center font-semibold">
+      <span>Toplam:</span>
+      <span id="total-price">0 ₼</span>
+    </div>
+    <button onclick="checkout()" class="mt-4 w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Sifariş et</button>
+  </div>
+
+
+
+ <!-- Sign In Modal -->
+ <div id="signin-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+  <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm relative">
+    <button onclick="toggleModal()" class="absolute top-2 right-2 text-gray-500 hover:text-red-500">✖</button>
+    <h2 class="text-xl font-bold mb-4 text-center">Giriş</h2>
+    <form class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium">Email</label>
+        <input type="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Parol</label>
+        <input type="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700">Daxil ol</button>
+        <button type="button" class="mt-4 bg-red-500 text-white w-full py-2 rounded hover:bg-red-600">Google
+          vasitəsi ilə qoşul</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+  <!-- Spacer for fixed navbar -->
+  <div class="pt-24"></div>
+
+  <!-- Order Tracking + My Orders Combined -->
+  <section class="max-w-3xl mx-auto bg-gray-100 p-6 rounded-xl shadow-md mt-10 text-center">
+    <h2 class="text-2xl font-semibold mb-6">📦 Sifarişini izlə</h2>
+    <div class="flex flex-col md:flex-row gap-4 items-center justify-center mb-6">
+      <input type="text" id="orderId" placeholder="Sifariş nömrəsini daxil et" class="w-full md:w-2/3 px-4 py-2 rounded border border-gray-300">
+      <button onclick="trackOrder()" class="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700">İzlə</button>
+    </div>
+    <p id="orderStatus" class="mt-2 text-green-600 font-medium"></p>
+
+    <!-- Orders Section -->
+    <div class="mt-10">
+      <div class="space-y-4">
+        <div class="order-card bg-white p-4 rounded-xl shadow mx-auto w-full md:w-2/3">
+          <p><strong>Sifariş №:</strong> #123456</p>
+          <p><strong>Tarix:</strong> 05 Aprel 2025</p>
+          <p><strong>Status:</strong> Çatdırılıb ✅</p>
+          <p><strong>Məbləğ:</strong> 45 AZN</p>
+        </div>
+        <div class="order-card bg-white p-4 rounded-xl shadow mx-auto w-full md:w-2/3">
+          <p><strong>Sifariş №:</strong> #123457</p>
+          <p><strong>Tarix:</strong> 10 Mart 2025</p>
+          <p><strong>Status:</strong> Yoldadır 🚚</p>
+          <p><strong>Məbləğ:</strong> 32 AZN</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-8 mt-16">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-lg font-semibold mb-2">📖 BookSite</p>
+      <p class="mb-2">Sizi kitabla daha yaxın edən onlayn mağaza</p>
+      <p>Email: <a href="mailto:info@booksite.az" class="underline">info@booksite.az</a></p>
+      <p class="text-sm mt-4">© 2025 Bütün hüquqlar qorunur</p>
+    </div>
+  </footer>
+
+  <script src="web.js"></script>
+</body>
+
+</html>

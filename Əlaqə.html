@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="web site.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+</head>
+
+<body class="bg-white text-gray-800 font-sans">
+
+<!-- Navbar -->
+<nav class="bg-white shadow-md">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold">📚 BookSite</div>
+    <ul class="flex gap-6 text-gray-700 text-lg items-center space-x-4 sm:space-x-8">
+      <li><a href="Home site.html" class="hover:text-blue-600">Əsas səhifə</a></li>
+      <li><a href="books.html" class="hover:text-blue-600">Kitablar</a></li>
+      <li><a href="Sifarişlərim.html" class="hover:text-blue-600">Sifarişlərim</a></li>
+      <li><a href="Əlaqə.html" class="hover:text-blue-600">Əlaqə</a></li>
+      <li>
+        <button onclick="document.getElementById('basket-panel').classList.toggle('hidden')" class="relative">
+          🛒 <span id="cart-count"
+            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">0</span>
+        </button>
+      </li>
+      <li>
+        <button onclick="toggleModal()" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Giriş</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+ <!-- Sign In Modal -->
+ <div id="signin-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+  <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm relative">
+    <button onclick="toggleModal()" class="absolute top-2 right-2 text-gray-500 hover:text-red-500">✖</button>
+    <h2 class="text-xl font-bold mb-4 text-center">Giriş</h2>
+    <form class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium">Email</label>
+        <input type="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Parol</label>
+        <input type="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700">Daxil ol</button>
+        <button type="button" class="mt-4 bg-red-500 text-white w-full py-2 rounded hover:bg-red-600">Google
+          vasitəsi ilə qoşul</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- Content boşluğu (navbar üstünü örtməsin deyə) -->
+<div class="pt-24"></div>
+
+
+<section class="contact-section">
+    <h2>Bizimlə Əlaqə</h2>
+    <form onsubmit="submitContactForm(event)">
+      <input type="text" id="name" placeholder="Adınız" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <textarea id="message" placeholder="Mesajınız" required></textarea>
+      <button type="submit">Göndər</button>
+    </form>
+    <div class="contact-info">
+      <p>📧 Email: info@sizinsehife.az</p>
+      <p>📞 Telefon: +994 XX XXX XX XX</p>
+      <p>📍 Ünvan: Bakı, Azərbaycan</p>
+    </div>
+  </section>
+  
+
+  <a href="https://wa.me/994XXXXXXXXX" target="_blank" class="whatsapp-float">
+    💬 WhatsApp ilə əlaqə
+  </a>
+
+
+
+
+<!-- Footer -->
+<footer class="bg-blue-900 text-white py-8 mt-12">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-lg font-semibold mb-2">📖 BookSite</p>
+      <p class="mb-2">Sizi kitabla daha yaxın edən onlayn mağaza</p>
+      <p>Email: <a href="mailto:info@booksite.az" class="underline">info@booksite.az</a></p>
+      <p class="text-sm mt-4">© 2025 Bütün hüquqlar qorunur</p>
+    </div>
+  </footer>
+
+
+
+
+
+  <script src="web.js"></script>
+
+
+
+</body>
+
+</html>

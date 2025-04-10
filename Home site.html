@@ -18,185 +18,212 @@
 
 <body class="bg-white text-gray-800 font-sans">
 
-<!-- Navbar -->
-<nav class="bg-white shadow-md fixed top-0 w-full z-50">
-  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <div class="text-2xl font-bold">📚 BookSite</div>
-    <ul class="flex gap-6 text-gray-700 text-lg items-center">
-      <li>
-        <a href="Home site.html"
-           class="hover:text-blue-600 hover:bg-gray-100 px-3 py-2 rounded transition duration-300">
-           Əsas səhifə
-        </a>
-      </li>
-      <li>
-        <a href="books.html"
-           class="hover:text-blue-600 hover:bg-gray-100 px-3 py-2 rounded transition duration-300">
-           Kitablar
-        </a>
-      </li>
-      <li>
-        <button onclick="document.getElementById('basket-panel').classList.toggle('hidden')" class="relative">
-          🛒 <span id="cart-count"
-            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">0</span>
-        </button>
-      </li>
-      <li>
-        <button onclick="toggleModal()"
-          class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 transition duration-300">
-          Giriş
-        </button>
-      </li>
-    </ul>
-  </div>
-</nav>
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-2xl font-bold">📚 BookSite</div>
+      <ul class="flex gap-6 text-gray-700 text-lg items-center space-x-4 sm:space-x-8">
+        <li><a href="Home site.html" class="hover:text-blue-600">Əsas səhifə</a></li>
+        <li><a href="books.html" class="hover:text-blue-600">Kitablar</a></li>
+        <li><a href="Sifarişlərim.html" class="hover:text-blue-600">Sifarişlərim</a></li>
+        <li><a href="Əlaqə.html" class="hover:text-blue-600">Əlaqə</a></li>
+        <li>
+          <button onclick="document.getElementById('basket-panel').classList.toggle('hidden')" class="relative">
+            🛒 <span id="cart-count"
+              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">0</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="toggleModal()"
+            class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Giriş</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-<!-- Content boşluğu (navbar üstünü örtməsin deyə) -->
-<div class="pt-24"></div>
+  <!-- Content boşluğu (navbar üstünü örtməsin deyə) -->
+  <div class="pt-24"></div>
 
-      <div class="container mx-auto px-4 pb-4">
-        <div class="flex justify-center">
-          <input type="text" placeholder="Kitab adı..."
-            class="w-full max-w-md px-4 py-2 border rounded-l focus:outline-none focus:ring" />
-          <button class="bg-blue-600 text-white px-4 py-2 rounded-r hover:bg-blue-700">
-            <a href=""><i class="fa-solid fa-magnifying-glass"></i></a></button>
-        </div>
-      </div>
-
-
-
-<!-- Ən çox satılanlar bölməsi -->
-<section class="container mx-auto px-4 py-12">
-  <div class="flex items-center mb-10">
-    <div class="flex-grow h-px bg-gray-300"></div>
-    <h2 class="text-3xl font-bold text-center mx-4 text-gray-700">Ən çox satılanlar</h2>
-    <div class="flex-grow h-px bg-gray-300"></div>
-  </div>
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-    
-    <!-- Kart 1 -->
-    <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
-      <img src="https://novella.az/wp-content/uploads/2024/06/WhatsApp-S%C9%99kil-2024-06-13-saat-13.42.12_0a7386cc.jpg" alt="Kitab 1" class="w-full h-110 object-cover">
-      <div class="p-4">
-        <h3 class="text-xl font-semibold mb-2">4 Günlük səyahət</h3>
-        <div class="mb-1 text-sm text-gray-600 flex justify-between">
-          <span class="font-medium text-gray-600">50</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-gray-500 h-2.5 rounded-full" style="width: 50%;"></div>
-        </div>
-      </div>
+  <!-- Ən çox satılanlar bölməsi -->
+  <section class="container mx-auto px-4 py-12">
+    <div class="flex items-center mb-10">
+      <div class="flex-grow h-px bg-gray-300"></div>
+      <h2 class="text-3xl font-bold text-center mx-4 text-gray-700">Ən çox satılanlar</h2>
+      <div class="flex-grow h-px bg-gray-300"></div>
     </div>
 
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
-  <!-- Kart 2 -->
-  <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
-    <img src="https://cdn.dsmcdn.com/ty1447/product/media/images/prod/QC/20240728/21/cf4a427f-f5c0-3892-b2b6-7b116e51f3bf/1_org_zoom.jpg" alt="Kitab 1" class="w-full h-110 object-cover">
-    <div class="p-4">
+      <!-- Kart 1 -->
+      <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
+        <img src="https://static.insales-cdn.com/r/XrUOMgbQdt0/rs:fit:1140:1140:1/q:80/plain/images/products/1/5315/889181379/get-product-image.@webp"
+          class="w-full h-110 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Məktubunuz var</h3>
+          <span class="text-yellow-400 text-3xl mb-3">★★★★☆</span>
+        </div>
+      </div>
+
+
+      <!-- Kart 2 -->
+      <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
+        <img src="https://cdn.dsmcdn.com/ty1447/product/media/images/prod/QC/20240728/21/cf4a427f-f5c0-3892-b2b6-7b116e51f3bf/1_org_zoom.jpg" alt="Kitab 1"
+          class="w-full h-110 object-cover">
+        <div class="p-4">
       <h3 class="text-xl font-semibold mb-2">Fillerde hatırlar</h3>
-      <div class="mb-1 text-sm text-gray-600 flex justify-between">
-        <span class="font-medium text-gray-600">32</span>
-      </div>
-      <div class="w-full bg-gray-200 rounded-full h-2.5">
-        <div class="bg-gray-500 h-2.5 rounded-full" style="width: 32%;"></div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- Kart 3 -->
-  <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
-    <img src="https://static.insales-cdn.com/images/products/1/5383/954561799/IMG_6696.jpeg" alt="Kitab 1" class="w-full h-110 object-cover">
-    <div class="p-4">
-      <h3 class="text-xl font-semibold mb-2">Qırmızı damlı malikanədə qətl</h3>
-      <div class="mb-1 text-sm text-gray-600 flex justify-between">
-        <span class="font-medium text-gray-600">60</span>
-      </div>
-      <div class="w-full bg-gray-200 rounded-full h-2.5">
-        <div class="bg-gray-500 h-2.5 rounded-full" style="width: 60%;"></div>
-      </div>
-    </div>
-  </div>
-
-
-
-    <!-- Kart 4 -->
-    <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
-      <img src="https://i.pinimg.com/originals/05/7d/88/057d8828bf7b6833f447619edb995771.jpg" alt="Kitab 1" class="w-full h-110 object-cover">
-      <div class="p-4">
-        <h3 class="text-xl font-semibold mb-2">Doğu ekspresinde cinayet</h3>
-        <div class="mb-1 text-sm text-gray-600 flex justify-between">
-          <span class="font-medium text-gray-600">75</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-gray-500 h-2.5 rounded-full" style="width: 75%;"></div>
+          <span class="text-yellow-400 text-3xl mb-3">★★★★☆</span>
         </div>
       </div>
-    </div>
 
+      <!-- Kart 3 -->
+      <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
+        <img src="https://www.qanun.az/images/news/compressed/2024-06-19-15-59-041718798344.jpg" alt="Kitab 1"
+          class="w-full h-110 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Qırmızı damlı malikanədə qətl</h3>
+          <span class="text-yellow-400 text-3xl mb-3">★★★★☆</span>
+        </div>
+      </div>
+
+
+
+
+
+
+      <!-- Kart 4 -->
+      <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
+        <img src="https://i.pinimg.com/originals/05/7d/88/057d8828bf7b6833f447619edb995771.jpg" alt="Kitab 1"
+          class="w-full h-110 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold items-center mb-2">Doğu ekspresinde cinayet</h3>
+          <span class="text-yellow-400 text-3xl mb-3">★★★★☆</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+  <!-- Səbət Paneli -->
+  <div id="basket-panel" class="hidden fixed top-24 right-6 w-80 bg-white border rounded-xl shadow-lg p-4 z-50">
+    <h3 class="text-lg font-bold mb-2">Səbət</h3>
+    <div id="basket-items" class="space-y-2 text-sm"></div>
+    <div class="mt-4 flex justify-between items-center font-semibold">
+      <span>Toplam:</span>
+      <span id="total-price">0 ₼</span>
+    </div>
+    <button onclick="checkout()"
+      class="mt-4 w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Checkout</button>
   </div>
-</section>
 
 
-
-
-
-    <!-- Səbət Paneli -->
-    <div id="basket-panel" class="hidden fixed top-24 right-6 w-80 bg-white border rounded-xl shadow-lg p-4 z-50">
-      <h3 class="text-lg font-bold mb-2">Səbət</h3>
-      <div id="basket-items" class="space-y-2 text-sm"></div>
-      <div class="mt-4 flex justify-between items-center font-semibold">
-        <span>Toplam:</span>
-        <span id="total-price">0 ₼</span>
-      </div>
-      <button onclick="checkout()"
-        class="mt-4 w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Checkout</button>
+  <!-- Sign In Modal -->
+  <div id="signin-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+    <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm relative">
+      <button onclick="toggleModal()" class="absolute top-2 right-2 text-gray-500 hover:text-red-500">✖</button>
+      <h2 class="text-xl font-bold mb-4 text-center">Giriş</h2>
+      <form class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium">Email</label>
+          <input type="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Parol</label>
+          <input type="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700">Daxil ol</button>
+          <button type="button" class="mt-4 bg-red-500 text-white w-full py-2 rounded hover:bg-red-600">Google
+            vasitəsi ilə qoşul</button>
+        </div>
+      </form>
     </div>
+  </div>
 
+  <!-- xidmetler -->
+  <section class="info-cards">
+    <div class="info-card">
+      <div class="icon-circle">
+        <i class="fas fa-truck"></i>
+      </div>
+      <h3>Pulsuz çatdırılma</h3>
+      <p>Bütün sifarişlərdə pulsuz və sürətli çatdırılma.</p>
+    </div>
+    <div class="info-card">
+      <div class="icon-circle">
+        <i class="fas fa-undo-alt"></i>
+      </div>
+      <h3>Geri qaytarma zəmanəti</h3>
+      <p>14 gün ərzində geri qaytarma imkanı.</p>
+    </div>
+    <div class="info-card">
+      <div class="icon-circle">
+        <i class="fas fa-headset"></i>
+      </div>
+      <h3>24/7 dəstək</h3>
+      <p>İstənilən vaxt suallarınız üçün buradayıq.</p>
+    </div>
+  </section>
 
-    <!-- Sign In Modal -->
-    <div id="signin-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
-      <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm relative">
-        <button onclick="toggleModal()" class="absolute top-2 right-2 text-gray-500 hover:text-red-500">✖</button>
-        <h2 class="text-xl font-bold mb-4 text-center">Giriş</h2>
-        <form class="space-y-4">
-          <div>
-            <label class="block text-sm font-medium">Email</label>
-            <input type="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Parol</label>
-            <input type="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
-          </div>
-          <div class="flex flex-col items-center gap-2">
-            <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700">Daxil ol</button>
-            <button type="button" class="mt-4 bg-red-500 text-white w-full py-2 rounded hover:bg-red-600">Google
-              vasitəsi ilə qoşul</button>
-          </div>
-        </form>
+  <!-- Müştəri Rəyləri -->
+  <section class="testimonials">
+    <h2>Müştəri Rəyləri</h2>
+    <div class="testimonial-container">
+      <div class="testimonial">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Aysel M.">
+        <h3>Aysel M.</h3>
+        <div class="stars">★★★★★</div>
+        <p>“Çox keyfiyyətli kitablar! Təqdimat da çox gözəldi.”</p>
+      </div>
+      <div class="testimonial">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Elvin R.">
+        <h3>Elvin R.</h3>
+        <div class="stars">★★★★★</div>
+        <p>“Çatdırılma sürətli və problemsiz oldu. Məmnunam.”</p>
+      </div>
+      <div class="testimonial">
+        <img src="https://randomuser.me/api/portraits/women/47.jpg" alt="Lalə H.">
+        <h3>Lalə H.</h3>
+        <div class="stars">★★★★★</div>
+        <p>“Kitablar çox gözəl qablaşdırılmışdı. Çox təşəkkür edirəm.”</p>
+      </div>
+      <div class="testimonial">
+        <img src="https://randomuser.me/api/portraits/men/48.jpg" alt="Rəşad T.">
+        <h3>Rəşad T.</h3>
+        <div class="stars">★★★★☆</div>
+        <p>“Kitablar vaxtında gəldi. Ümumilikdə razı qaldım.”</p>
       </div>
     </div>
-
-
-    <!-- Footer -->
-    <footer class="bg-blue-900 text-white py-8 mt-12">
-      <div class="container mx-auto px-4 text-center">
-        <p class="text-lg font-semibold mb-2">📖 BookSite</p>
-        <p class="mb-2">Sizi kitabla daha yaxın edən onlayn mağaza</p>
-        <p>Email: <a href="mailto:info@booksite.az" class="underline">info@booksite.az</a></p>
-        <p class="text-sm mt-4">© 2025 Bütün hüquqlar qorunur</p>
-      </div>
-    </footer>
+  </section>
 
 
 
 
 
-    <script src="web.js"></script>
 
 
 
-  </body>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-8 mt-12">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-lg font-semibold mb-2">📖 BookSite</p>
+      <p class="mb-2">Sizi kitabla daha yaxın edən onlayn mağaza</p>
+      <p>Email: <a href="mailto:info@booksite.az" class="underline">info@booksite.az</a></p>
+      <p class="text-sm mt-4">© 2025 Bütün hüquqlar qorunur</p>
+    </div>
+  </footer>
+
+
+
+
+
+  <script src="web.js"></script>
+
+
+
+</body>
 
 </html>

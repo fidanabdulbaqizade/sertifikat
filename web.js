@@ -2,7 +2,7 @@
 const books = [
   {
     title: "Qırmızı damlı malikanədə qətl",
-    price: 12,
+    price: 9,
     image: "https://static.insales-cdn.com/images/products/1/5383/954561799/IMG_6696.jpeg",
     category: "azerbaycan",
     description: "Göygöl rayonunun mərkəzində yerləşən estetikliyi ilə hər kəsi məftun edən böyük və əzəmətli malikanəyə camaat “Qırmızı damlı malikanə” deyirdi. Malikanə qədər onun sakinləri də daim maraq dairəsində olur, həyat tərzləri insanların dilindən düşmürdü."
@@ -14,51 +14,62 @@ const books = [
     category: "azerbaycan",
     description: "Toy ərəfəsində olan gənc Nərminlə nişanlısı Fərhadın qəfil ayrılığı silsilə qətllərlə müşayiət olunur. Əvvəlcə Fərhadın özünün qəzaya düşərək ölməsi xəbəri yayılır..."
   },
+
+
+  {
+    title: "Məktubunuz var",
+    price: 10,
+    image: "https://static.insales-cdn.com/r/XrUOMgbQdt0/rs:fit:1140:1140:1/q:80/plain/images/products/1/5315/889181379/get-product-image.@webp",
+    category: "azerbaycan",
+    description: "On yaşlı Alenanın yaşından böyük macəraları ilə yaxından tanış olun. Bu kitabda dostluq, ailə dəyərləri, valideyn sevgisi, xeyirxahlıq və bol məktub var… Yaş həddi olmayan kitab."
+  },
+
+
   {
     title: "Möcüzə evi",
-    price: 12,
+    price: 5,
     image: "https://1001kitab.az/product-images/6718ceccd473b.png",
     category: "azerbaycan",
     description: "14 yaşlı Jasmin zəngin xəyal dünyasının sayəsində möcüzəli bir hadisə ilə qarşılaşır..."
   },
   {
     title: "4 Günlük səyahət",
-    price: 12,
-    image: "https://novella.az/wp-content/uploads/2024/06/WhatsApp-S%C9%99kil-2024-06-13-saat-13.42.12_0a7386cc.jpg",
+    price: 7,
+    image: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSLUWC3I1_trm9jlbRqqkkDPjHHZxHDsBk0AdYFZL911LRvh306",
     category: "azerbaycan",
     description: "Pandemiya səbəbindən Hindistanda uzun müddət qalan gənc qızın macəraları..."
   },
   {
     title: "Nildə ölüm",
-    price: 12,
+    price: 11,
     image: "https://m.media-amazon.com/images/I/819Q--0puzL._AC_UY654_QL65_.jpg",
     category: "turk",
     description: "Agatha Christie'nin məşhur əsəri – Hercule Poirot'un Nildə sirli qətli araşdırması."
   },
   {
     title: "Fillerde hatırlar",
-    price: 12,
+    price: 10,
     image: "https://cdn.dsmcdn.com/ty1447/product/media/images/prod/QC/20240728/21/cf4a427f-f5c0-3892-b2b6-7b116e51f3bf/1_org_zoom.jpg",
     category: "turk",
     description: "Fillerin yaddaş və beyin gücünə işarə edən maraqlı əsər."
   },
   {
     title: "Doğu ekspresinde cinayet",
-    price: 12,
+    price: 11,
     image: "https://i.pinimg.com/originals/05/7d/88/057d8828bf7b6833f447619edb995771.jpg",
     category: "turk",
     description: "Agatha Christie'nin qətl dolu, klassik əsəri."
   },
   {
     title: "Noel'de cinayet",
-    price: 12,
+    price: 10,
     image: "https://www.altinkitaplar.com.tr/static/img/2022/06/noel'de_cinayet-m.jpg",
     category: "turk",
     description: "Stephen'in istasyonda başlayan cinayət sirri."
   },
   {
     title: "The Little Prince",
-    price: 12,
+    price: 8,
     image: "https://images.thalia.media/07/-/993d4f27281741159b0c91b5d5986604/the-little-prince-epub-antoine-de-saint-exupery.jpeg",
     category: "xarici",
     description: "A timeless story of love, loss, and imagination from another planet."
@@ -106,6 +117,26 @@ function addToCart(title, price) {
   loadCart();
 }
 
+// Axtarış inputuna qulaq as
+document.addEventListener("DOMContentLoaded", () => {
+  loadCart();
+  updateCartCount();
+  renderBooks(books);
+
+
+
+  const searchInput = document.querySelector("input[type='text']");
+  if (searchInput) {
+    searchInput.addEventListener("input", e => {
+      searchBooks(e.target.value);
+    });
+  }
+});
+// Axtarış
+function searchBooks(term) {
+  const results = books.filter(book => book.title.toLowerCase().includes(term.toLowerCase()));
+  renderBooks(results);
+}
 function changeQuantity(index, change) {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   cart[index].quantity += change;
@@ -177,6 +208,7 @@ function showImageModal(src, title, description) {
   document.getElementById('image-modal').classList.remove('hidden');
 }
 
+
 function closeModal() {
   document.getElementById('image-modal').classList.add('hidden');
 }
@@ -184,12 +216,6 @@ function closeModal() {
 document.getElementById('image-modal').addEventListener('click', function () {
   this.classList.add('hidden');
 });
-
-window.onload = function () {
-  renderBooks(books);
-  loadCart();
-  updateCartCount();
-};
 
 new Swiper(".bookSwiper", {
   loop: true,
@@ -221,3 +247,38 @@ sales.forEach((el, i) => {
   const val = parseInt(el.innerText);
   bars[i].style.width = `${Math.min(val, 100)}%`;
 });
+
+function trackOrder() {
+  const orderId = document.getElementById("orderId").value;
+  const status = document.getElementById("orderStatus");
+  if (orderId === "") {
+    status.innerText = "Zəhmət olmasa, sifariş nömrəsini daxil edin.";
+  } else {
+    status.innerText = `Sifariş #${orderId} işlənir. Tezliklə çatdırılacaq.`;
+  }
+}
+
+function changeLanguage(select) {
+  const lang = select.value;
+  alert(`Dil dəyişdirildi: ${lang}`);
+  // Burada yönləndirmə və ya lokalizasiya əlavə edə bilərsən
+}
+
+function calculatePoints() {
+  const amount = parseFloat(document.getElementById("purchaseAmount").value);
+  const result = document.getElementById("bonusResult");
+
+  if (!amount || amount <= 0) {
+    result.innerText = "Zəhmət olmasa, keçərli məbləğ daxil et.";
+    return;
+  }
+
+  const points = Math.floor(amount); // 1 AZN = 1 xal
+  result.innerText = `Təbriklər! Siz ${points} bonus xal qazandınız 🎉`;
+}
+
+function submitContactForm(event) {
+  event.preventDefault();
+  alert("Mesajınız uğurla göndərildi! Tezliklə sizinlə əlaqə saxlanılacaq.");
+  // Backend bağlantısı əlavə oluna bilər (form data göndərmək üçün)
+}

@@ -16,32 +16,33 @@
 
 <body class="bg-white text-gray-800 font-sans">
 
-  <!-- Navbar -->
-  <nav class="bg-white shadow-md">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="text-2xl font-bold">📚 BookSite</div>
-      <ul class="flex gap-6 text-gray-700 text-lg items-center">
-        <li><a href="Home site.html" class="hover:text-blue-600">Əsas səhifə</a></li>
-        <li><a href="books.html" class="hover:text-blue-600">Kitablar</a></li>
-        <li>
-          <button onclick="document.getElementById('basket-panel').classList.toggle('hidden')" class="relative">
-            🛒 <span id="cart-count"
-              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">0</span>
-          </button>
-        </li>
-        <li>
-          <button onclick="toggleModal()" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Giriş</button>
-        </li>
-      </ul>
-    </div>
+<!-- Navbar -->
+<nav class="bg-white shadow-md">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold">📚 BookSite</div>
+    <ul class="flex gap-6 text-gray-700 text-lg items-center space-x-4 sm:space-x-8">
+      <li><a href="Home site.html" class="hover:text-blue-600">Əsas səhifə</a></li>
+      <li><a href="books.html" class="hover:text-blue-600">Kitablar</a></li>
+      <li><a href="Sifarişlərim.html" class="hover:text-blue-600">Sifarişlərim</a></li>
+      <li><a href="Əlaqə.html" class="hover:text-blue-600">Əlaqə</a></li>
+      <li>
+        <button onclick="document.getElementById('basket-panel').classList.toggle('hidden')" class="relative">
+          🛒 <span id="cart-count"
+            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">0</span>
+        </button>
+      </li>
+      <li>
+        <button onclick="toggleModal()" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Giriş</button>
+      </li>
+    </ul>
+  </div>
 
     <div class="container mx-auto px-4 pb-4">
       <div class="flex justify-center">
-        <input type="text" placeholder="Kitab adı..."
-          class="w-full max-w-md px-4 py-2 border rounded-l focus:outline-none focus:ring" />
+        <input type="text" id="searchInput" placeholder="Kitab adı..."
+    class="w-full max-w-md px-4 py-2 border rounded-l focus:outline-none focus:ring" />
         <button class="bg-blue-600 text-white px-4 py-2 rounded-r hover:bg-blue-700">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
+          <a href=""><i class="fa-solid fa-magnifying-glass"></i></a></button>
       </div>
     </div>
   </nav>
@@ -91,6 +92,17 @@
     </div>
   </div>
 
+
+
+
+
+  <div id="book-info-modal" class="flex hidden">
+    <div class="modal-content">
+      <h3 class="text-xl font-semibold mb-4">Kitab haqqında məlumat</h3>
+      <p id="book-info-text"></p>
+      <button onclick="closeModal()" class="close-modal mt-4">Bağla</button>
+    </div>
+  </div>
   <!-- Kitab Modal -->
   <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden z-50 flex justify-center items-center p-6">
     <div class="bg-white rounded-xl p-6 max-w-2xl w-full flex flex-col md:flex-row items-start gap-6 relative">
