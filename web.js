@@ -1,284 +1,515 @@
-// Kitab siyahısı
+// Giris 
+function toggleModal() {
+  const modal = document.getElementById("signin-modal");
+  modal.classList.toggle("hidden");
+}
+ // Modalın fonuna kliklədikdə bağlansın
+ document.addEventListener("click", function (event) {
+  const modal = document.getElementById("signin-modal");
+  const modalContent = modal.querySelector(".bg-white");
+
+  if (!modal.classList.contains("hidden") && !modalContent.contains(event.target) && modal.contains(event.target)) {
+    toggleModal();
+  }
+});
+
+// Kitab siyahisi
 const books = [
   {
-    title: "Qırmızı damlı malikanədə qətl",
+    title: "Miss Marplın sonuncu işi",
+    author: "Agatha Cristie",
+    genre: "dedektiv",
+    language: "xarici",
+    rating: 4,
     price: 9,
-    image: "https://static.insales-cdn.com/images/products/1/5383/954561799/IMG_6696.jpeg",
-    category: "azerbaycan",
-    description: "Göygöl rayonunun mərkəzində yerləşən estetikliyi ilə hər kəsi məftun edən böyük və əzəmətli malikanəyə camaat “Qırmızı damlı malikanə” deyirdi. Malikanə qədər onun sakinləri də daim maraq dairəsində olur, həyat tərzləri insanların dilindən düşmürdü."
+    image: "https://static.insales-cdn.com/r/06sZagA35C4/rs:fit:1140:1140:1/q:80/plain/images/products/1/3993/794111897/MARPLIN_SONUNCU_ISHI_qapaq_.jpg@webp",
+    description: "Unikal qadın xəfiyyə miss Marpl indiyə qədər bir çox mürəkkəb cinayət işlərinin üstünü açıb...",
+    newRelease: true // add this property
+  },
+  {
+    title: "Parisdəki bütün çiçəklər",
+    author: "Sarah Jio",
+    genre: "sevgi romanı",
+    language: "azərbaycan",
+    rating: 5,
+    price: 15,
+    image: "https://static.insales-cdn.com/r/m0JlNWm8K6A/rs:fit:1140:1140:1/q:80/plain/images/products/1/1587/638092851/PARISDEKI_BUTUN_CICEKLER_qapaq.jpg@webp",
+    description: "Bu kitabı yazarkən personajlarımın ardınca Parisin gözəl mənzərələrinə səyahət etdim..."
+  },
+  {
+    title: "Lady Susan",
+    author: "Jane Austen",
+    genre: "klasikler",
+    language: "türk",
+    rating: 4,
+    price: 11,
+    image: "https://static.insales-cdn.com/r/g9NvqyEWfSg/rs:fit:1140:1140:1/q:80/plain/images/products/1/449/970736065/0002017366001-1.jpg@webp",
+    description: "Seni korkularından yola çıkarak değil, izanından ve sevginden yola çıkarak kazanmak istiyorum."
+  },
+  {
+    title: "Bir ömrün sonbaharı",
+    author: "Burcu Yılmaz",
+    genre: "məcara",
+    language: "türk",
+    rating: 4,
+    price: 6,
+    image: "https://i.dr.com.tr/cache/600x600-0/originals/0000000633265-1.jpg",
+    description: "Ömrüm ömrüne emanet demiştin bana.Ve giderken yarım kalan ömrünü bırakmıştın hayatıma.",
+    newRelease: true
+  },
+  {
+    title: "Qırmızı damlı malikanədə qətl",
+    author: "Natiq Əliyev",
+    genre: "dedektiv",
+    language: "azərbaycan",
+    rating: 4,
+    price: 8.20,
+    image: "https://www.qanun.az/images/news/compressed/290x420/2024-06-19-15-59-041718798344.jpg?v=1",
+    description: "Romanın qəhrəmanı, çoxsaylı intriqaların episentrinə qeyri-ixtiyari düşən iki sevən gəncin taleyinə biganə qala bilmir."
+  },
+  {
+    title: "Ali ve Nino",
+    author: "Kurban Said",
+    genre: "sevgi romanı",
+    language: "türk",
+    rating: 4,
+    price: 7,
+    image: "https://static.insales-cdn.com/r/uFnfdLSzzC8/rs:fit:1140:1140:1/q:80/plain/images/products/1/957/191161277/Qurban_Seid_Ali_Nino_TURK_Esas.png@webp",
+    description: "Bir ülkede yaşayan Müslüman Ali ile Gürcü Hıristiyan güzel Nino’nun dünyayı sarsan hikâyesi."
+  },
+
+
+
+  {
+    title: "Anna Karenina",
+    author: "Leo Tolstoy",
+    genre: "sevgi romanı",
+    language: "xarici",
+    rating: 4,
+    price: 14,
+    image: "https://files.legimi.com/images/58dcf09cd985c49deb457ee1993f573f/cover.jpg",
+    description: "Anna Karenina is one of the most loved and memorable heroines of literature."
   },
   {
     title: "Məktubdakı qadın",
-    price: 12,
-    image: "https://bakubookcenter.az/ru/get-product-image?fileId=89628",
-    category: "azerbaycan",
-    description: "Toy ərəfəsində olan gənc Nərminlə nişanlısı Fərhadın qəfil ayrılığı silsilə qətllərlə müşayiət olunur. Əvvəlcə Fərhadın özünün qəzaya düşərək ölməsi xəbəri yayılır..."
-  },
-
-
-  {
-    title: "Məktubunuz var",
-    price: 10,
-    image: "https://static.insales-cdn.com/r/XrUOMgbQdt0/rs:fit:1140:1140:1/q:80/plain/images/products/1/5315/889181379/get-product-image.@webp",
-    category: "azerbaycan",
+    author: "Mürşüd Mehdi",
+    genre: "dedektiv",
+    language: "azərbaycan",
+    rating: 4,
+    price: 8.70,
+    image: "https://static.insales-cdn.com/r/hHWmurGCgYA/rs:fit:1140:1140:1/q:80/plain/images/products/1/7663/936410607/MEKTUBDAKI_QADIN_qapaq__1_.jpg@webp",
     description: "On yaşlı Alenanın yaşından böyük macəraları ilə yaxından tanış olun. Bu kitabda dostluq, ailə dəyərləri, valideyn sevgisi, xeyirxahlıq və bol məktub var… Yaş həddi olmayan kitab."
-  },
-
-
-  {
-    title: "Möcüzə evi",
-    price: 5,
-    image: "https://1001kitab.az/product-images/6718ceccd473b.png",
-    category: "azerbaycan",
-    description: "14 yaşlı Jasmin zəngin xəyal dünyasının sayəsində möcüzəli bir hadisə ilə qarşılaşır..."
   },
   {
     title: "4 Günlük səyahət",
-    price: 7,
+    author: "Rəsul Ali",
+    genre: "məcara",
+    language: "azərbaycan",
+    rating: 4,
+    price: 9,
     image: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSLUWC3I1_trm9jlbRqqkkDPjHHZxHDsBk0AdYFZL911LRvh306",
-    category: "azerbaycan",
     description: "Pandemiya səbəbindən Hindistanda uzun müddət qalan gənc qızın macəraları..."
   },
+
   {
-    title: "Nildə ölüm",
-    price: 11,
-    image: "https://m.media-amazon.com/images/I/819Q--0puzL._AC_UY654_QL65_.jpg",
-    category: "turk",
-    description: "Agatha Christie'nin məşhur əsəri – Hercule Poirot'un Nildə sirli qətli araşdırması."
+    title: "Cinayət və cəza",
+    author: "Fyodor Dostoyevski",
+    genre: "məcara",
+    language: "azərbaycan",
+    rating: 4,
+    price: 11.90,
+    image: "https://www.qanun.az/images/news/compressed/290x420/2024-03-16-11-56-211710575781.jpg?v=1",
+    description: "Gənc tələbə çalışqan və qabiliyyətli olsa da, maddi imkansızlıq ucbatından hüquq fakültəsini yarıda buraxır. O, var-dövlətin yaramaz, parazit və mənəviyyatsız insanların əlində cəmləşdiyini düşünür."
   },
+
   {
-    title: "Fillerde hatırlar",
+    title: "Yüz ilin tənhalığı",
+    author: "Qabriel Qarsiya Markes",
+    genre: "klasikler",
+    language: "azərbaycan",
+    rating: 4,
+    price: 12.70,
+    image: "https://www.qanun.az/images/news/compressed/260x400/2025-02-04-11-36-381738654598.jpg?v=1",
+    description: "Qabriel Qarsia Markesin “Yüz ilin tənhalığı” əsəri dünya ədəbiyyatının ən böyük şah əsərlərindən biri hesab olunur. Bu roman təkcə müəllifin deyil, bütövlükdə Latın Amerikası ədəbiyyatının ən təsirli nümunələrindən biridir."
+  },
+
+  {
+    title: "Səmada görüş",
+    author: "Sabina Nasif",
+    genre: "klasikler",
+    language: "azərbaycan",
+    rating: 4,
     price: 10,
-    image: "https://cdn.dsmcdn.com/ty1447/product/media/images/prod/QC/20240728/21/cf4a427f-f5c0-3892-b2b6-7b116e51f3bf/1_org_zoom.jpg",
-    category: "turk",
-    description: "Fillerin yaddaş və beyin gücünə işarə edən maraqlı əsər."
+    image: "https://www.qanun.az/images/news/compressed/240x370/2025-04-19-10-25-111745043911.jpg?v=1",
+    description: "Gənc ana olan Səda övladına daha yaxşı valideyn ola bilmək üçün uzun bir yolçuluğa yollanır. Yol boyunca illər ərzində üzərinə geyindiyi müxtəlif kimlikləri bir-bir soyunaraq, içindəki uşaqla üz-üzə gəlir."
   },
-  {
-    title: "Doğu ekspresinde cinayet",
-    price: 11,
-    image: "https://i.pinimg.com/originals/05/7d/88/057d8828bf7b6833f447619edb995771.jpg",
-    category: "turk",
-    description: "Agatha Christie'nin qətl dolu, klassik əsəri."
-  },
-  {
-    title: "Noel'de cinayet",
-    price: 10,
-    image: "https://www.altinkitaplar.com.tr/static/img/2022/06/noel'de_cinayet-m.jpg",
-    category: "turk",
-    description: "Stephen'in istasyonda başlayan cinayət sirri."
-  },
-  {
-    title: "The Little Prince",
-    price: 8,
-    image: "https://images.thalia.media/07/-/993d4f27281741159b0c91b5d5986604/the-little-prince-epub-antoine-de-saint-exupery.jpeg",
-    category: "xarici",
-    description: "A timeless story of love, loss, and imagination from another planet."
-  }
+
+
 ];
-// Kitabların ekrana verilməsi
-function renderBooks(bookList) {
-  const container = document.getElementById("book-list");
-  container.innerHTML = "";
-  bookList.forEach(book => {
-    const card = document.createElement("div");
-    card.className = "border p-4 rounded shadow bg-white max-w-xs text-center";
-    card.innerHTML = `
-      <img src="${book.image}" alt="${book.title}" class="w-40 h-60 object-cover mx-auto mb-3 rounded cursor-pointer hover:scale-105 transition" onclick="showImageModal('${book.image}', '${book.title}', \`${book.description || ''}\`)"/>
-      <h3 class="text-lg font-semibold">${book.title}</h3>
-      <p class="text-gray-600 my-1">${book.price} ₼</p>
-      <button onclick="addToCart('${book.title}', ${book.price})" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Səbətə əlavə et</button>
-    `;
-    container.appendChild(card);
+
+let currentPage = 1;
+const itemsPerPage = 6;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let currentFilteredBooks = [];
+
+const modal = document.getElementById("modal");
+
+function updateCartUI() {
+  const cartItems = document.getElementById("cartItems");
+  const cartCount = document.getElementById("cart-count");
+  const totalAmount = document.getElementById("totalAmount");
+
+  cartItems.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+    const li = document.createElement("li");
+    li.className = "flex justify-between items-center border-b pb-1";
+    li.innerHTML = `
+      <span>${item.title} - ${item.price} ₼</span>
+      <button onclick="removeFromCart(${index})" class="text-red-500 text-lg">
+        <i class="fas fa-trash"></i>
+      </button>`;
+    cartItems.appendChild(li);
   });
-}
 
-// Kateqoriyaya görə filtr
-function filterBooks(category, element) {
-  const filtered = books.filter(book => book.category === category);
-  renderBooks(filtered);
-  document.querySelectorAll('.category-btn').forEach(btn => {
-    btn.classList.remove('bg-blue-100', 'font-semibold', 'text-blue-700');
-  });
-  element.classList.add('bg-blue-100', 'font-semibold', 'text-blue-700');
-}
-
-// Səbət funksiyaları
-function addToCart(title, price) {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const existing = cart.find(item => item.title === title);
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({ title, quantity: 1, price });
-  }
-  localStorage.setItem('cart', JSON.stringify(cart));
-  updateCartCount();
-  document.getElementById('basket-panel').classList.remove('hidden');
-  loadCart();
-}
-
-// Axtarış inputuna qulaq as
-document.addEventListener("DOMContentLoaded", () => {
-  loadCart();
-  updateCartCount();
-  renderBooks(books);
-
-
-
-  const searchInput = document.querySelector("input[type='text']");
-  if (searchInput) {
-    searchInput.addEventListener("input", e => {
-      searchBooks(e.target.value);
-    });
-  }
-});
-// Axtarış
-function searchBooks(term) {
-  const results = books.filter(book => book.title.toLowerCase().includes(term.toLowerCase()));
-  renderBooks(results);
-}
-function changeQuantity(index, change) {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  cart[index].quantity += change;
-  if (cart[index].quantity <= 0) cart.splice(index, 1);
-  localStorage.setItem('cart', JSON.stringify(cart));
-  updateCartCount();
-  loadCart();
+  cartCount.textContent = cart.length;
+  totalAmount.textContent = `${total} ₼`;
 }
 
 function removeFromCart(index) {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
   cart.splice(index, 1);
-  localStorage.setItem('cart', JSON.stringify(cart));
-  updateCartCount();
-  loadCart();
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartUI();
 }
 
-function loadCart() {
-  const basket = document.getElementById('basket-items');
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  let total = 0;
-  if (cart.length > 0) {
-    basket.innerHTML = cart.map((item, index) => {
-      total += item.price * item.quantity;
-      return `
-        <div class="flex justify-between items-center border-b pb-2">
-          <div>
-            <div class="font-semibold">${item.title}</div>
-            <div class="flex items-center gap-2 mt-1">
-              <button onclick="changeQuantity(${index}, -1)" class="bg-gray-200 px-2 rounded">−</button>
-              <span>${item.quantity}</span>
-              <button onclick="changeQuantity(${index}, 1)" class="bg-gray-200 px-2 rounded">+</button>
-            </div>
-          </div>
-          <div class="text-right">
-            <div>${item.price * item.quantity} ₼</div>
-            <button onclick="removeFromCart(${index})" class="text-red-500 text-sm">🗑️</button>
-          </div>
-        </div>
-      `;
-    }).join('');
-  } else {
-    basket.innerHTML = '<p class="text-gray-500">Səbət boşdur.</p>';
+function addToCart(title) {
+  const book = books.find(b => b.title === title);
+  cart.push(book);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartUI();
+}
+
+function toggleCart() {
+  document.getElementById("cartPanel").classList.toggle("hidden");
+}
+
+function confirmCart() {
+  if (cart.length === 0) {
+    alert("Səbətdə heç bir kitab yoxdur.");
+    return;
   }
-  document.getElementById('total-price').innerText = total + ' ₼';
+  alert("Sifarişiniz uğurla qeydə alındı!");
+  cart = [];
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartUI();
+  document.getElementById("basket-panel").classList.add("hidden");
 }
 
-function updateCartCount() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-  document.getElementById('cart-count').innerText = count;
+function filterBooks() {
+  const keyword = document.getElementById("searchInput").value.toLowerCase();
+  const minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
+  const maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
+  const selectedGenre = document.getElementById("genreSelect")?.value.toLowerCase() || "";
+  const selectedLang = document.getElementById("languageSelect")?.value.toLowerCase() || "";
+
+  return books.filter(book =>
+    (book.title.toLowerCase().includes(keyword) || book.author.toLowerCase().includes(keyword)) &&
+    book.price >= minPrice &&
+    book.price <= maxPrice &&
+    (selectedGenre === "" || book.genre.toLowerCase() === selectedGenre) &&
+    (selectedLang === "" || book.language.toLowerCase() === selectedLang)
+  );
 }
 
-function checkout() {
-  alert("Sifarişiniz qeydə alındı! 🎉");
-  localStorage.removeItem('cart');
-  updateCartCount();
-  loadCart();
-}
+function renderBooks(filtered = null) {
+  const filteredBooks = filtered || currentFilteredBooks || books;
+  currentFilteredBooks = filteredBooks;
 
-function toggleModal() {
-  document.getElementById('signin-modal').classList.toggle('hidden');
-}
+  const bookList = document.getElementById("bookList");
+  bookList.innerHTML = "";
 
-function showImageModal(src, title, description) {
-  document.getElementById('modal-img').src = src;
-  document.getElementById('modal-title').innerText = title;
-  document.getElementById('modal-desc').innerText = description;
-  document.getElementById('image-modal').classList.remove('hidden');
-}
+  const start = (currentPage - 1) * itemsPerPage;
+  const paginated = filteredBooks.slice(start, start + itemsPerPage);
 
-
-function closeModal() {
-  document.getElementById('image-modal').classList.add('hidden');
-}
-
-document.getElementById('image-modal').addEventListener('click', function () {
-  this.classList.add('hidden');
-});
-
-new Swiper(".bookSwiper", {
-  loop: true,
-  spaceBetween: 20,
-  slidesPerView: 1,
-  breakpoints: {
-    640: { slidesPerView: 2 },
-    768: { slidesPerView: 3 },
-    1024: { slidesPerView: 4 }
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev"
-  },
-  autoplay: {
-    delay: 3000,
-    disableOnInteraction: false
-  }
-});
-
-// Bestseller progress bars
-const sales = document.querySelectorAll('.sales-count');
-const bars = document.querySelectorAll('.progress-bar');
-sales.forEach((el, i) => {
-  const val = parseInt(el.innerText);
-  bars[i].style.width = `${Math.min(val, 100)}%`;
-});
-
-function trackOrder() {
-  const orderId = document.getElementById("orderId").value;
-  const status = document.getElementById("orderStatus");
-  if (orderId === "") {
-    status.innerText = "Zəhmət olmasa, sifariş nömrəsini daxil edin.";
-  } else {
-    status.innerText = `Sifariş #${orderId} işlənir. Tezliklə çatdırılacaq.`;
-  }
-}
-
-function changeLanguage(select) {
-  const lang = select.value;
-  alert(`Dil dəyişdirildi: ${lang}`);
-  // Burada yönləndirmə və ya lokalizasiya əlavə edə bilərsən
-}
-
-function calculatePoints() {
-  const amount = parseFloat(document.getElementById("purchaseAmount").value);
-  const result = document.getElementById("bonusResult");
-
-  if (!amount || amount <= 0) {
-    result.innerText = "Zəhmət olmasa, keçərli məbləğ daxil et.";
+  if (paginated.length === 0) {
+    bookList.innerHTML = "<p class='text-gray-500'>Nəticə tapılmadı.</p>";
+    renderPagination(0);
     return;
   }
 
-  const points = Math.floor(amount); // 1 AZN = 1 xal
-  result.innerText = `Təbriklər! Siz ${points} bonus xal qazandınız 🎉`;
+  paginated.forEach(book => {
+    const div = document.createElement("div");
+    div.className = "bg-white p-6 rounded-2xl shadow-lg fade-in mb-6";
+
+    div.innerHTML = `
+      <div class="flex items-center gap-4 border shadow-lg rounded-lg p-2 bg-white">
+        <div class="flex flex-col items-center w-40">
+          <div class="w-full h-60 relative rounded overflow-hidden shadow-md border">
+            <img src="${book.image}" alt="${book.title}" class="w-full h-full object-cover" />
+            ${book.newRelease ? `<span class="absolute top-0 left-0 bg-blue-500 text-white px-2 py-1 text-sm rounded-br-lg">Yeni</span>` : ""}
+          </div>
+          <button onclick='openModal("${book.title}")' class="text-blue-500 text-sm mt-2 flex items-center gap-1">
+            <i class="fas fa-eye text-gray-400"></i> Ətraflı bax
+          </button>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-xl font-semibold mb-1">${book.title}</h3>
+          <p class="text-gray-700">Müəllif: ${book.author}</p>
+          <p class="text-gray-700">Janr: ${book.genre}</p>
+          <p class="text-gray-700">Dil: ${book.language}</p>
+          <p class="text-blue-700">Qiymət: ${book.price} ₼</p>
+          <div class="mt-4">
+            <button onclick="addToCart('${book.title}')" class="bg-blue-500 text-white px-3 py-2 rounded hover:bg-gray-400 inline-block ">
+              Səbətə əlavə et
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    bookList.appendChild(div);
+  });
+
+  renderPagination(filteredBooks.length);
 }
 
-function submitContactForm(event) {
-  event.preventDefault();
-  alert("Mesajınız uğurla göndərildi! Tezliklə sizinlə əlaqə saxlanılacaq.");
-  // Backend bağlantısı əlavə oluna bilər (form data göndərmək üçün)
+function renderPagination(totalItems) {
+  const pagination = document.getElementById("pagination");
+  pagination.innerHTML = "";
+  const pageCount = Math.ceil(totalItems / itemsPerPage);
+
+  for (let i = 1; i <= pageCount; i++) {
+    const btn = document.createElement("button");
+    btn.className = `page-btn ${i === currentPage ? "active-page" : ""}`;
+    btn.addEventListener("click", () => {
+      currentPage = i;
+      renderBooks(currentFilteredBooks);
+    });
+    pagination.appendChild(btn);
+  }
 }
+
+function performSearch() {
+  currentPage = 1;
+  const filtered = filterBooks();
+  renderBooks(filtered);
+}
+
+function openModal(title) {
+  const book = books.find(b => b.title === title);
+  document.getElementById("modalTitle").textContent = book.title;
+  document.getElementById("modalAuthor").textContent = "Müəllif: " + book.author;
+  document.getElementById("modalGenre").textContent = "Janr: " + book.genre;
+  document.getElementById("modalLang").textContent = "Dil: " + book.language;
+  document.getElementById("modalRating").textContent = "Reytinq: " + book.rating + "⭐";
+  document.getElementById("modalPrice").textContent = "Qiymət: " + book.price + " ₼";
+  document.getElementById("modalDescription").textContent = book.description || "Kitab haqqında əlavə məlumat yoxdur.";
+
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+}
+
+function closeModal() {
+  modal.classList.add("hidden");
+}
+
+// Event listeners və ilk yükləmə
+document.addEventListener("DOMContentLoaded", () => {
+  renderBooks();
+  updateCartUI();
+
+  // Axtarış inputları
+  document.getElementById("searchBtn").addEventListener("click", performSearch);
+  document.getElementById("searchInput").addEventListener("keydown", e => {
+    if (e.key === "Enter") performSearch();
+  });
+  document.getElementById("minPrice").addEventListener("input", performSearch);
+  document.getElementById("maxPrice").addEventListener("input", performSearch);
+  document.getElementById("genreSelect").addEventListener("change", performSearch);
+  document.getElementById("languageSelect").addEventListener("change", performSearch);
+  document.getElementById("confirmCartBtn")?.addEventListener("click", confirmCart);
+
+  // Kitab seçimi üçün dropdown
+  const bookSelect = document.getElementById("bookSelect");
+  books.forEach(book => {
+    const option = document.createElement("option");
+    option.value = book.title;
+    option.textContent = book.title;
+    bookSelect.appendChild(option);
+  });
+
+  const sampleReviews = [
+    {
+      name: "Aysel Məmmədova",
+      image: "https://randomuser.me/api/portraits/women/68.jpg",
+      book: "Cinayət və Cəza",
+      rating: 5,
+      text: "Möhtəşəm klassik! Raskolnikovun daxili mübarizəsi çox təsir edicidir."
+    },
+    {
+      name: "Elvin Quliyev",
+      image: "https://randomuser.me/api/portraits/men/44.jpg",
+      book: "Yüz İlin Tənhalığı",
+      rating: 4,
+      text: "Qabriel Qarsia Markesin dili və təsvirləri heyranedicidir."
+    }
+  ];
+  
+  const reviewsContainer = document.getElementById("reviewsContainer");
+  sampleReviews.forEach((review) => {
+    const div = document.createElement("div");
+    div.className = "review-card";
+    
+    div.innerHTML = `
+      <div class="flex items-center gap-4">
+        <img src="${review.image}" alt="${review.name}" class="w-14 h-14 rounded-full object-cover border shadow-md">
+        <p class="font-semibold">${review.name}</p>
+      </div>
+      <div class="mt-4">
+        <p><strong>Kitab:</strong> ${review.book}</p>
+        <p><strong>Rating:</strong> ${"⭐".repeat(review.rating)}</p>
+        <p><strong>Rəy:</strong> ${review.text}</p>
+      </div>
+    `;
+    
+    reviewsContainer.appendChild(div);
+  });
+// Ulduz reytinqi hissəsini ayrıca düzəldək
+const starRating = document.getElementById("starRating");
+let selectedRating = 0;
+
+// Ulduzları dinamik yaratmaq (5 ulduz)
+for (let i = 1; i <= 5; i++) {
+  const star = document.createElement("span");
+  star.classList.add("star");
+  star.dataset.value = i;
+  star.innerHTML = "⭐";
+  starRating.appendChild(star);
+}
+
+// Ulduzlara tıklama funksiyası
+starRating.addEventListener("click", (event) => {
+  if (event.target.classList.contains("star")) {
+    selectedRating = parseInt(event.target.dataset.value);
+    const stars = starRating.querySelectorAll(".star");
+    stars.forEach((star, index) => {
+      star.classList.toggle("selected", index < selectedRating);
+    });
+  }
+});
+
+document.getElementById("submitReview").addEventListener("click", () => {
+  const reviewText = document.getElementById("reviewText").value;
+  const selectedBook = document.getElementById("bookSelect").value;
+
+  // Avtomatik ad və şəkil
+  const randomNames = ["Elvin Quliyev", "Nigar Məmmədova", "Kamran Həsənov", "Aytac Əliyeva", "Tamerlan Hüseynov"];
+  const randomIndex = Math.floor(Math.random() * randomNames.length);
+  const randomName = randomNames[randomIndex];
+  const randomImage = `https://i.pravatar.cc/100?img=${Math.floor(Math.random() * 70)}`;
+
+  if (reviewText && selectedRating > 0 && selectedBook) {
+    const review = document.createElement("div");
+    review.className = "border-b pb-4 mb-4";
+
+    review.innerHTML = `
+      <div class="flex gap-4 items-start">
+        <img src="${randomImage}" alt="${randomName}" class="w-14 h-14 rounded-full object-cover shadow-md border">
+        <div>
+          <p class="font-semibold">${randomName}</p>
+          <p><strong>Kitab: </strong>${selectedBook}</p>
+          <p><strong>Rating: </strong>${"⭐".repeat(selectedRating)}</p>
+          <p><strong>Rəy: </strong>${reviewText}</p>
+        </div>
+      </div>
+    `;
+
+    document.getElementById("reviewsContainer").appendChild(review);
+
+    // Formu sıfırla
+    document.getElementById("reviewText").value = "";
+    document.getElementById("bookSelect").value = "";
+    selectedRating = 0;
+    const stars = document.querySelectorAll(".star");
+    stars.forEach(star => star.classList.remove("selected"));
+  } else {
+    alert("Zəhmət olmasa, kitab, rəy və qiymətləndirmə verin.");
+  }
+});
+})
+
+const reviewsContainer = document.getElementById("reviewsContainer");
+const starRating = document.getElementById("starRating");
+let selectedRating = 0;
+
+// Random ad və gender listi
+const names = [
+  { name: "Elvin Məmmədov", gender: "male" },
+  { name: "Aysel Əliyeva", gender: "female" },
+  { name: "Kamran Hüseynov", gender: "male" },
+  { name: "Nigar Rəhimova", gender: "female" },
+  { name: "Lale Quliyeva", gender: "female" },
+  { name: "Murad İsmayılov", gender: "male" }
+];
+
+// Random user gətir
+function getRandomUser() {
+  const user = names[Math.floor(Math.random() * names.length)];
+  const image = user.gender === "male"
+    ? `https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 90)}.jpg`
+    : `https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * 90)}.jpg`;
+  return { ...user, image };
+}
+
+
+const leftArrow = document.querySelector('.left-arrow');
+const rightArrow = document.querySelector('.right-arrow');
+const bookList = document.querySelector('.book-list');
+
+leftArrow.addEventListener('click', () => {
+  bookList.scrollBy({ left: -220, behavior: 'smooth' });
+});
+
+rightArrow.addEventListener('click', () => {
+  bookList.scrollBy({ left: 220, behavior: 'smooth' });
+});
+document.querySelector('.left-arrow').addEventListener('click', () => {
+  bookList.scrollBy({ left: -220, behavior: 'smooth' });
+});
+document.querySelector('.right-arrow').addEventListener('click', () => {
+  bookList.scrollBy({ left: 220, behavior: 'smooth' });
+});
+function goToPrevPage() {
+  if (currentPage > 1) {
+    currentPage--;
+    renderBooks(currentFilteredBooks);
+  }
+}
+
+function goToNextPage() {
+  const totalPages = Math.ceil(currentFilteredBooks.length / itemsPerPage);
+  if (currentPage < totalPages) {
+    currentPage++;
+    renderBooks(currentFilteredBooks);
+  }
+}
+
+// Faq
+document.querySelectorAll('.faq-toggle').forEach(button => {
+  button.addEventListener('click', () => {
+    const content = button.nextElementSibling;
+    const icon = button.querySelector('svg');
+
+    // Başqa açıq olanı bağla
+    document.querySelectorAll('.faq-content').forEach(faq => {
+      if (faq !== content) faq.classList.add('hidden');
+    });
+    document.querySelectorAll('.faq-toggle svg').forEach(svg => {
+      if (svg !== icon) svg.classList.remove('rotate-180');
+    });
+
+    content.classList.toggle('hidden');
+    icon.classList.toggle('rotate-180');
+  });
+});

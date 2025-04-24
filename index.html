@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="web.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+</head>
+
+<body class="bg-white text-gray-800 font-sans" onload="renderBooks(books)">
+
+<!-- Navbar -->
+<nav class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold">📚 BookSite</div>
+    <ul class="flex gap-3 text-black text-lg items-center">
+      <li><a href="index.html" class="nav-link text-black hover:text-gray-700">Əsas səhifə</a></li>
+      <li><a href="Haqqımızda.html" class="nav-link text-black hover:text-gray-700">Haqqımızda</a></li>
+      <li><a href="books.html" class="nav-link text-black hover:text-gray-700">Kitablar</a></li>
+      <li><a href="Əlaqə.html" class="nav-link text-black hover:text-gray-700">Əlaqə</a></li>
+      <li>
+        <button onclick="document.getElementById('basket-panel').classList.toggle('hidden')" class="relative text-black">
+          🛒
+          <span id="cart-count"
+            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">0</span>
+        </button>
+      </li>
+      <li>
+        <button onclick="toggleModal()"
+          class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 transition-all duration-300 flex items-center gap-2">
+          <i class="fas fa-user text-white"></i> Giriş
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Content boşluğu (navbar üstünü örtməsin deyə) -->
+<div class="pt-24"></div>
+
+
+
+
+<!-- Baner -->
+  <div class="banner">
+    <img src="https://www.qanun.az/images/news/compressed/290x420/2024-06-19-15-59-041718798344.jpg?v=1"
+      alt="Kitab şəkli">
+    <div class="banner-content">
+      <h1>Qırmızı Damlı Malikanədə Qətl</h1>
+      <p>
+        Romanın qəhrəmanı, çoxsaylı intriqaların episentrinə qeyri-ixtiyari düşən iki sevən gəncin taleyinə biganə qala
+        bilmir.
+        Böyüklərin acgözlüyünün doğurduğu fəsadlara qurban getmələrinə razı olmayan qəhrəman,
+        soyuq ağlı ilə qərar verərkən öz həssas qəlbinə bəzi güzəştlər edir.
+      </p>
+      <button>İndi Al</button>
+    </div>
+  </div>
+
+
+  
+  <div class="flex items-center mb-10 pt-10">
+    <div class="flex-grow h-px bg-gray-300"></div>
+    <h2 class="text-3xl font-bold text-center mx-4 text-gray-700">Yeni gələn kitablar</h2>
+    <div class="flex-grow h-px bg-gray-300"></div>
+  </div>
+
+  <div class="flip-grid">
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://images.macmillan.com/folio-assets/macmillan_us_frontbookcovers_1000H/9780312595524.jpg"
+            alt="Book">
+        </div>
+        <div class="flip-card-back ">
+          <p>One of the most important life events is falling in love, yet we never learn about it in school.</p>
+          <p>Osho</p>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://www.altinkitaplar.com.tr/static/img/2020/09/guvercinler-arasinda-bir-kedi2-m.jpg"
+            alt="Book">
+        </div>
+        <div class="flip-card-back">
+          <p>Meadowbank, zengin aile kızlarının eğitim gördüğü ünlü bir yatılı okuldur. Gece yarısı spor salonundan
+            gelen esrarengiz ışık iki öğretmenin dikkatini çeker.</p>
+          <p>Agatha Christie</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://i.dr.com.tr/cache/600x600-0/originals/0000000633265-1.jpg" alt="Book">
+        </div>
+        <div class="flip-card-back">
+          <p>Ömrüm ömrüne emanet demiştin bana.Ve giderken yarım kalan ömrünü bırakmıştın hayatıma.</p>
+          <p> Burcu Yılmaz</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img
+            src="https://static.insales-cdn.com/r/uFnfdLSzzC8/rs:fit:1140:1140:1/q:80/plain/images/products/1/957/191161277/Qurban_Seid_Ali_Nino_TURK_Esas.png@webp"
+            alt="Book">
+        </div>
+        <div class="flip-card-back">
+          <p>Bir ülkede yaşayan Müslüman Ali ile Gürcü Hıristiyan
+            güzel Nino’nun dünyayı sarsan hikâyesi. </p>
+          <p>Kurban Said</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://files.legimi.com/images/58dcf09cd985c49deb457ee1993f573f/cover.jpg" alt="Book">
+        </div>
+        <div class="flip-card-back">
+          <p>Anna Karenina is one of the most loved and memorable heroines of literature. </p>
+          <p>Leo Tolstoy</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- xidmetler -->
+  <section class="info-cards">
+    <div class="info-card">
+      <div class="icon-circle">
+        <i class="fas fa-truck"></i>
+      </div>
+      <h3>Pulsuz çatdırılma</h3>
+      <p>Bütün sifarişlərdə pulsuz və sürətli çatdırılma.</p>
+    </div>
+    <div class="info-card">
+      <div class="icon-circle">
+        <i class="fas fa-undo-alt"></i>
+      </div>
+      <h3>Geri qaytarma zəmanəti</h3>
+      <p>14 gün ərzində geri qaytarma imkanı.</p>
+    </div>
+    <div class="info-card">
+      <div class="icon-circle">
+        <i class="fas fa-headset"></i>
+      </div>
+      <h3>24/7 dəstək</h3>
+      <p>İstənilən vaxt suallarınız üçün buradayıq.</p>
+    </div>
+  </section>
+
+  <!-- Ən çox satılanlar bölməsi -->
+  <section class="container mx-auto px-4 py-12">
+    <div class="flex items-center mb-10">
+      <div class="flex-grow h-px bg-gray-300"></div>
+      <h2 class="text-3xl font-bold text-center mx-4 text-gray-700">Ən çox satılanlar</h2>
+      <div class="flex-grow h-px bg-gray-300"></div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+      <!-- Kart 1 -->
+      <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
+        <img
+          src="https://static.insales-cdn.com/r/XrUOMgbQdt0/rs:fit:1140:1140:1/q:80/plain/images/products/1/5315/889181379/get-product-image.@webp"
+          class="w-full h-110 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Məktubunuz var</h3>
+          <span class="text-yellow-400 text-3xl mb-3">★★★★☆</span>
+        </div>
+      </div>
+
+
+      <!-- Kart 2 -->
+      <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
+        <img
+          src="https://cdn.dsmcdn.com/ty1447/product/media/images/prod/QC/20240728/21/cf4a427f-f5c0-3892-b2b6-7b116e51f3bf/1_org_zoom.jpg"
+          alt="Kitab 1" class="w-full h-110 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Fillerde hatırlar</h3>
+          <span class="text-yellow-400 text-3xl mb-3">★★★★☆</span>
+        </div>
+      </div>
+
+      <!-- Kart 3 -->
+      <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
+        <img src="https://www.qanun.az/images/news/compressed/2024-06-19-15-59-041718798344.jpg" alt="Kitab 1"
+          class="w-full h-110 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Qırmızı damlı malikanədə qətl</h3>
+          <span class="text-yellow-400 text-3xl mb-3">★★★★☆</span>
+        </div>
+      </div>
+
+      <!-- Kart 4 -->
+      <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
+        <img src="https://i.pinimg.com/originals/05/7d/88/057d8828bf7b6833f447619edb995771.jpg" alt="Kitab 1"
+          class="w-full h-110 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold items-center mb-2">Doğu ekspresinde cinayet</h3>
+          <span class="text-yellow-400 text-3xl mb-3">★★★★☆</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+ 
+
+
+  <!-- Sign In Modal -->
+  <div id="signin-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+    <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm relative">
+      <button onclick="toggleModal()" class="absolute top-2 right-2 text-gray-500 hover:text-red-500">✖</button>
+      <h2 class="text-xl font-bold mb-4 text-center">Giriş</h2>
+      <form class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium">Email</label>
+          <input type="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Parol</label>
+          <input type="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700">Daxil ol</button>
+          <button type="button" class="mt-4 bg-red-500 text-white w-full py-2 rounded hover:bg-red-600">Google
+            vasitəsi ilə qoşul</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Müştəri Rəyləri -->
+  <section class="testimonials">
+    <h2>Müştəri Rəyləri</h2>
+    <div class="testimonial-container">
+      <div class="testimonial">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Aysel M.">
+        <h3>Aysel M.</h3>
+        <div class="stars">★★★★★</div>
+        <p>“Çox keyfiyyətli kitablar! Təqdimat da çox gözəldi.”</p>
+      </div>
+      <div class="testimonial">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Elvin R.">
+        <h3>Elvin R.</h3>
+        <div class="stars">★★★★★</div>
+        <p>“Çatdırılma sürətli və problemsiz oldu. Məmnunam.”</p>
+      </div>
+      <div class="testimonial">
+        <img src="https://randomuser.me/api/portraits/women/47.jpg" alt="Lalə H.">
+        <h3>Lalə H.</h3>
+        <div class="stars">★★★★★</div>
+        <p>“Kitablar çox gözəl qablaşdırılmışdı. Çox təşəkkür edirəm.”</p>
+      </div>
+      <div class="testimonial">
+        <img src="https://randomuser.me/api/portraits/men/48.jpg" alt="Rəşad T.">
+        <h3>Rəşad T.</h3>
+        <div class="stars">★★★★☆</div>
+        <p>“Kitablar vaxtında gəldi. Ümumilikdə razı qaldım.”</p>
+      </div>
+    </div>
+  </section>
+
+
+<!-- Abune ol -->
+  <section class="bg-gray-100 py-12 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold text-bg-blue-600 mb-3">📬 Abunə ol və heç nəyi qaçırma!</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        Yeni gələn kitablar, kampaniyalar və xüsusi endirimlər barədə ilk sən xəbərdar ol!
+      </p>
+  
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <input
+          type="email"
+          placeholder="E-poçt ünvanını daxil et"
+          class="w-full sm:w-[32rem] px-6 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-lg"
+        />
+        <button
+          class="bg-blue-600 hover:bg-indigo-800 text-white px-6 py-3 rounded-xl text-lg font-semibold transition duration-300">
+          Abunə ol
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-800 text-white py-6 px-4 ">
+    <div class="max-w-6xl mx-auto text-center space-y-4">
+      
+      <!-- Logo və başlıq -->
+      <div class="flex items-center justify-center gap-2 text-xl font-bold">
+        📖 <span>BookSite</span>
+      </div>
+  
+      <!-- Qısa təsvir -->
+      <p class="text-sm text-gray-300">Sizi kitabla daha yaxın edən onlayn mağaza</p>
+  
+      <!-- Sosial media ikonları -->
+      <div class="flex justify-center gap-4 text-xl">
+        <a href="#" class="hover:text-indigo-300 transition"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="hover:text-indigo-300 transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-indigo-300 transition"><i class="fab fa-facebook-f"></i></a>
+      </div>
+  
+      <!-- Əlaqə -->
+      <a href="mailto:info@booksite.az" class="text-sm underline hover:text-indigo-200 transition">
+        info@booksite.az
+      </a>
+  
+      <!-- Alt xətt və müəllif hüququ -->
+      <hr class="border-gray-500 w-1/3 mx-auto" />
+      <p class="text-xs text-gray-400">&copy; 2025 Bütün hüquqlar qorunur</p>
+    </div>
+  </footer>
+
+
+
+
+
+  <script src="web.js"></script>
+
+
+
+</body>
+
+</html>

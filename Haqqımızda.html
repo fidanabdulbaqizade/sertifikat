@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookSite</title>
+  <link rel="stylesheet" href="web.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-800 font-sans" onload="renderBooks(books)">
+
+<!-- Navbar -->
+<nav class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold">📚 BookSite</div>
+    <ul class="flex gap-3 text-black text-lg items-center">
+      <li><a href="index.html" class="nav-link text-black hover:text-gray-700">Əsas səhifə</a></li>
+      <li><a href="Haqqımızda.html" class="nav-link text-black hover:text-gray-700">Haqqımızda</a></li>
+      <li><a href="books.html" class="nav-link text-black hover:text-gray-700">Kitablar</a></li>
+      <li><a href="Əlaqə.html" class="nav-link text-black hover:text-gray-700">Əlaqə</a></li>
+      <li>
+        <button onclick="document.getElementById('basket-panel').classList.toggle('hidden')" class="relative text-black">
+          🛒
+          <span id="cart-count"
+            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">0</span>
+        </button>
+      </li>
+      <li>
+        <button onclick="toggleModal()"
+          class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 transition-all duration-300 flex items-center gap-2">
+          <i class="fas fa-user text-white"></i> Giriş
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Content boşluğu (navbar üstünü örtməsin deyə) -->
+<div class="pt-24"></div>
+
+  <!-- Səbət Paneli -->
+  <div id="basket-panel" class="hidden fixed top-24 right-6 w-80 bg-white border rounded-xl shadow-lg p-4 z-50">
+    <h3 class="text-lg font-bold mb-2">Səbət</h3>
+    <div id="basket-items" class="space-y-2 text-sm"></div>
+    <div class="mt-4 flex justify-between items-center font-semibold">
+      <span>Toplam:</span>
+      <span id="total-price">0 ₼</span>
+    </div>
+    <button onclick="checkout()" class="mt-4 w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Sifariş et</button>
+  </div>
+
+
+
+ <!-- Sign In Modal -->
+ <div id="signin-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+  <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm relative">
+    <button onclick="toggleModal()" class="absolute top-2 right-2 text-gray-500 hover:text-red-500">✖</button>
+    <h2 class="text-4xl font-extrabold text-blue-700 mb-2">Giriş</h2>
+    <form class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium">Email</label>
+        <input type="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Parol</label>
+        <input type="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700">Daxil ol</button>
+        <button type="button" class="mt-4 bg-red-500 text-white w-full py-2 rounded hover:bg-red-600">Google
+          vasitəsi ilə qoşul</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+  <!-- Spacer for fixed navbar -->
+  <div class="pt-15"></div>
+
+
+<!-- Haqqımızda -->
+<section class="max-w-6xl mx-auto p-8">
+  <div class="text-center mb-10">
+    <h1 class="text-3xl font-extrabold text-blue-700 mb-2">Haqqımızda</h1>
+    <p class="text-gray-400 text-lg">Kitabsevərlərin etibarlı kitab dünyası.</p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-8 items-start">
+    <img src="https://images.unsplash.com/photo-1582133776712-0b942f3ef601?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="KitabSat Haqqımızda" class="rounded-lg shadow-lg">
+
+    <div class="flex flex-col justify-between space-y-5 h-full">
+      <div>
+        <p class="text-gray-600 text-lg leading-relaxed">
+          <span class="font-semibold text-blue-700">BookSite.az</span> kitabsevərləri bir araya toplayan rəqəmsal platformadır. Məqsədimiz müxtəlif janrlarda kitabları əlçatan etmək və oxuculara oxuma zövqü aşılamaqdır. Biz inanırıq ki, hər kitab yeni bir dünya, hər səhifə isə fərqli bir macəradır.
+        </p>
+        <p class="text-gray-600 text-lg mt-4">
+          Saytımızda həm bestseller kitablar, həm də yerli və xarici müəlliflərin ən dəyərli əsərləri təqdim olunur. Sən də bizim kitab dünyamıza qoşul!
+        </p> <br>
+        <p class="text-gray-600 text-lg leading-relaxed">
+          Daim yenilənən kataloqumuz, xüsusi endirim kampaniyalarımız və oxucu rəyləri ilə BookSite.az sənin ən etibarlı kitab məkanına çevriləcək.
+        </p>
+      </div>
+
+      <button class="px-3 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition w-max">Daha ətraflı</button>
+    </div>
+  </div>
+</section>
+
+<!-- blog -->
+<section class="max-w-6xl mx-auto p-8">
+  <div class="text-center mb-10">
+    <h1 class="text-3xl font-extrabold text-blue-700 mb-2">Müəllif Tövsiyələri</h1>
+    <p class="text-gray-400 text-lg">Kitab aləmi, oxu tövsiyələri və daha çox.</p>
+  </div>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="border rounded-xl overflow-hidden shadow hover:scale-105 transition">
+      <img src="https://images.unsplash.com/photo-1638390028289-cdcc75698696?q=80&w=2008&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Blog 1" class="w-full h-48 object-cover">
+      <div class="p-5">
+        <h2 class="text-2xl font-semibold mb-3">2025-ci ilin ən çox oxunan kitabları</h2>
+        <p class="text-gray-600 mb-4">Bu il ən çox satılan və oxunan kitabların siyahısını təqdim edirik...</p>
+        <a href="#" class="text-blue-600 font-medium hover:underline flex items-center gap-1">
+          Davamını oxu <span class="font-bold text-lg text-blue-600">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="border rounded-xl overflow-hidden shadow hover:scale-105 transition">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5a6i7XkF4_XggF6Kbwjn8vNm4JfBW895SBg&s" alt="Blog 2" class="w-full h-48 object-cover">
+      <div class="p-5">
+        <h2 class="text-2xl font-semibold mb-3">Oxu vərdişi necə formalaşdırılır?</h2>
+        <p class="text-gray-600 mb-4">Kitab oxuma vərdişini inkişaf etdirmək üçün 5 səmərəli üsul...</p>
+        <a href="#" class="text-blue-600 font-medium hover:underline flex items-center gap-1">
+          Davamını oxu <span class="font-bold text-lg text-blue-600">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="border rounded-xl overflow-hidden shadow hover:scale-105 transition">
+      <img src="https://images.unsplash.com/photo-1590531189261-e023a9f89cb0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D" alt="Blog 3" class="w-full h-48 object-cover">
+      <div class="p-5">
+        <h2 class="text-2xl font-semibold mb-3">Kitab hədiyyə etməyin faydaları</h2>
+        <p class="text-gray-600 mb-4">Sevdiklərinizə kitab hədiyyə etməyin 3 əsas səbəbi...</p>
+        <a href="#" class="text-blue-600 font-medium hover:underline flex items-center gap-1">
+          Davamını oxu <span class="font-bold text-lg text-blue-600">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<div class="my-10 container">
+  <h3 class="text-3xl text-center font-extrabold text-blue-700 mb-5">Ən Yaxın Tədbirlər</h3>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    
+    <!-- Tədbir Kartı -->
+    <div class="border p-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+      <img src="https://www.ohsu.edu/sites/default/files/2023-11/pexels-shvets-production-7176302%20%281%29.jpg" alt="Yazıçı ilə Canlı Görüş" class="w-full h-48 object-cover rounded-lg mb-4">
+      <div class="flex flex-col flex-grow justify-between">
+        <div>
+          <h4 class="text-lg font-semibold">Yazıçı ilə Canlı Görüş</h4>
+          <p class="text-gray-600">Tarix: 15 May 2025</p>
+          <p class="text-gray-600">Vaxt: 18:00</p>
+          <p class="text-gray-600">Yazıçı ilə canlı yayımlanan görüşə qoşulun və yeni kitabları haqqında söhbət edin. Görüşdə suallar verə, yazıçı ilə maraqlı söhbətlər edə bilərsiniz.</p>
+        </div>
+        <a href="#" class="text-blue-500 mt-3 inline-block">Ətraflı məlumat <span class="font-bold text-lg text-blue-600">→</span></a>
+      </div>
+    </div>
+
+    <!-- Tədbir Kartı -->
+    <div class="border p-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+      <img src="https://www.shutterstock.com/shutterstock/videos/1102807213/thumb/1.jpg?ip=x480" alt="Kitab Sərgisi" class="w-full h-48 object-cover rounded-lg mb-4">
+      <div class="flex flex-col flex-grow justify-between">
+        <div>
+          <h4 class="text-lg font-semibold">Kitab Sərgisi</h4>
+          <p class="text-gray-600">Tarix: 25 May 2025</p>
+          <p class="text-gray-600">Vaxt: 10:00 - 17:00</p>
+          <p class="text-gray-600">Gələcək kitab sərgisinə qatılın və yeni kitablar haqqında məlumat alın. Müxtəlif müəlliflərin iştirak etdiyi sərgiyə gəlmək üçün əvvəlcədən qeydiyyatdan keçin.</p>
+        </div>
+        <a href="#" class="text-blue-500 mt-3 inline-block">Ətraflı məlumat <span class="font-bold text-lg text-blue-600">→</span></a>
+      </div>
+    </div>
+
+    <!-- Tədbir Kartı -->
+    <div class="border p-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+      <img src="https://media.istockphoto.com/id/2148856297/photo/speaker-at-business-conference-corporate-presentation-workshop-coaching-training-news.webp?a=1&b=1&s=612x612&w=0&k=20&c=GtKsSj0ypHPD5uZXBxZZDzurZcJkKenVO35W54goa-M=" alt="Yazı Seminarı" class="w-full h-48 object-cover rounded-lg mb-4">
+      <div class="flex flex-col flex-grow justify-between">
+        <div>
+          <h4 class="text-lg font-semibold">Yazı Seminarı: Mətnin Gücü</h4>
+          <p class="text-gray-600">Tarix: 30 May 2025</p>
+          <p class="text-gray-600">Vaxt: 14:00</p>
+          <p class="text-gray-600">Yazıçılar və yazar olmaq istəyənlər üçün seminar. Yazı sənətini öyrənmək və öz yazı qabiliyyətinizi inkişaf etdirmək üçün gələcək seminara qatılın.</p>
+        </div>
+        <a href="#" class="text-blue-500 mt-3 inline-block">Ətraflı məlumat <span class="font-bold text-lg text-blue-600">→</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-8 mt-16">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-lg font-semibold mb-2">📖 BookSite</p>
+      <p class="mb-2">Sizi kitabla daha yaxın edən onlayn mağaza</p>
+      <p>Email: <a href="mailto:info@booksite.az" class="underline">info@booksite.az</a></p>
+      <p class="text-sm mt-4">© 2025 Bütün hüquqlar qorunur</p>
+    </div>
+  </footer>
+
+  <script src="web.js"></script>
+</body>
+
+</html>
